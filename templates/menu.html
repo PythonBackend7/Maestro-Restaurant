@@ -2,26 +2,22 @@
 {% load static %}
 {% block content %}
     <h1 style="margin-top: 60px; margin-bottom: 40px">Categories</h1>
-    {% for cat in categories %}
-
-        <button type="button" class="btn btn-info">{{ cat.name }}</button>
-
+    {% for i in categories%}
+        <button type="button" class="btn btn-primary"><a href="/menu/?cat={{ i }}" style="color: azure">{{ i.name }}</a></button>
     {% endfor %}
+{#    {% for cat in foods.category.all %}#}
+{##}
+{#        <a href="/menu/?cat={{ cat }}">{{ cat.name }}</a>#}
+{##}
+{#    {% endfor %}#}
     <h1 style="margin-top: 60px; margin-bottom: 60px">Menu</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for food in foods %}
         <div class="col">
             <div class="card h-100">
-                <img src="{{ food.image.url }}" class="card-img-top" alt="...">
+                <a href="{% url 'food_detail' food.id %}" style="color: black"><img src="{{ food.image.url }}" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ food.name}}</h5>
-                    <p class="card-text">{{ food.description }}</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">{{ food.created_at }}</small>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Category: {{ food.category }}</small>
+                    <h5 class="card-title"><a href="{% url 'food_detail' food.id %}" style="color: black">{{ food.name }}</a></h5>
                 </div>
                 <div class="card-footer">
                     <h3>Price: {{ food.price }} so'm</h3>
